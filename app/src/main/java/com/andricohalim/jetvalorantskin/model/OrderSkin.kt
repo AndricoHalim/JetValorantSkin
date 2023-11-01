@@ -1,6 +1,6 @@
 package com.andricohalim.jetvalorantskin.model
 
-class OrderSkin(
+data class OrderSkin(
     val skin: Skin,
     val count: Int
 )
