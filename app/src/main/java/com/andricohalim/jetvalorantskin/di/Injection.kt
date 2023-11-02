@@ -1,4 +1,9 @@
 package com.andricohalim.jetvalorantskin.di
 
-class Injection {
+import com.andricohalim.jetvalorantskin.data.ValorantSkinRepository
+
+object Injection {
+    fun provideRepository(): ValorantSkinRepository {
+        return ValorantSkinRepository.getInstance()
+    }
 }
