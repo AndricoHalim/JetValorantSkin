@@ -45,7 +45,7 @@ fun ProductCounter(
             modifier = Modifier.size(30.dp)
         ) {
             Text(
-                text = "—",
+                text = "-",
                 fontSize = 22.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier

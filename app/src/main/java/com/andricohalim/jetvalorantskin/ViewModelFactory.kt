@@ -6,7 +6,6 @@ import com.andricohalim.jetvalorantskin.data.ValorantSkinRepository
 import com.andricohalim.jetvalorantskin.screen.cart.CartViewModel
 import com.andricohalim.jetvalorantskin.screen.detail.DetailSkinViewModel
 import com.andricohalim.jetvalorantskin.screen.home.HomeViewModel
-import com.andricohalim.jetvalorantskin.screen.navigation.Screen
 
 class ViewModelFactory(private val repository: ValorantSkinRepository) :
 ViewModelProvider.NewInstanceFactory() {

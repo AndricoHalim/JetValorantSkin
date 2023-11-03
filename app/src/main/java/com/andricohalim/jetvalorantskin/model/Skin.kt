@@ -5,5 +5,6 @@ data class Skin(
     val photoUrl: String,
     val name: String,
     val requiredVP: Int,
-    val description: String
+    val description: String,
+    val weapon: String
 )

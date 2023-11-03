@@ -1,22 +1,18 @@
 package com.andricohalim.jetvalorantskin.ui.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -41,7 +37,7 @@ fun CartItem(
     ) {
         AsyncImage(
             model = photoUrl,
-            contentDescription = null,
+            contentDescription = stringResource(R.string.skin_picture),
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(100.dp)
@@ -67,7 +63,7 @@ fun CartItem(
                     R.string.required_VP,
                     totalPoint
                 ),
-                color = MaterialTheme.colorScheme.secondary,
+                color = MaterialTheme.colorScheme.onBackground,
                 style = MaterialTheme.typography.titleSmall,
             )
         }
@@ -87,7 +83,7 @@ fun CartItemPreview() {
     JetValorantSkinTheme {
         CartItem(
             4, "", "Prime Bundle", 7100, 0,
-            onProductCountChanged = { skinId, count -> },
+            onProductCountChanged = { _, _ -> },
         )
     }
 }

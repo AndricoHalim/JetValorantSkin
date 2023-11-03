@@ -4,11 +4,16 @@
     <string name="menu_cart">Cart</string>
     <string name="menu_profile">Profile</string>
     <string name="required_VP">%d VP</string>
-    <string name="total_order">Total pesanan : %d VP</string>
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="total_order">Price Total : %d VP</string>
     <string name="add_to_cart">Add to Cart</string>
     <string name="back">Back</string>
-    <string name="share_message">Hey, I have redeem %1$d rewards in Dicoding with total %2$d Points. Do you want too?</string>
+    <string name="plus_symbol">＋</string>
+    <string name="minus_symbol">-</string>
+    <string name="share_message">Hey, I have buy %1$d new skins in VALORANT with total %2$d VP. Do you want too?</string>
     <string name="valorant_reward">Valorant Skin</string>
     <string name="search_skin">Search your favorite skin</string>
+    <string name="no_skin_found">No skin found</string>
+    <string name="empty_cart">Cart Empty</string>
+    <string name="weapon_in_bundle">Weapon In Bundle: %1$s</string>
+    <string name="skin_picture">Skin Picture</string>
 </resources>

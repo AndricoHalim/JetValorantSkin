@@ -1,6 +1,7 @@
 package com.andricohalim.jetvalorantskin.screen.cart
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,9 +12,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -61,7 +64,7 @@ fun CartScreen(
 fun CartContent(
     state: CartState,
     onProductCountChanged: (id: Long, count: Int) -> Unit,
-    onOrderButtonClicked: (String) -> Unit,  // Add a default empty lambda
+    onOrderButtonClicked: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val shareMessage = stringResource(
@@ -90,16 +93,31 @@ fun CartContent(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier.weight(weight = 1f)
         ) {
-            items(state.orderSkin, key = { it.skin.id }) { item ->
-                CartItem(
-                    skinId = item.skin.id,
-                    photoUrl = item.skin.photoUrl,
-                    title = item.skin.name,
-                    totalPoint = item.skin.requiredVP * item.count,
-                    count = item.count,
-                    onProductCountChanged = onProductCountChanged,
-                )
-                Divider()
+            if (state.orderSkin.isNotEmpty()) {
+                items(state.orderSkin, key = { it.skin.id }) { item ->
+                    CartItem(
+                        skinId = item.skin.id,
+                        photoUrl = item.skin.photoUrl,
+                        title = item.skin.name,
+                        totalPoint = item.skin.requiredVP * item.count,
+                        count = item.count,
+                        onProductCountChanged = onProductCountChanged,
+                    )
+                    Divider()
+                }
+            } else {
+                item {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = stringResource(R.string.empty_cart),
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onBackground
+                        )
+                    }
+                }
             }
         }
         OrderButton(

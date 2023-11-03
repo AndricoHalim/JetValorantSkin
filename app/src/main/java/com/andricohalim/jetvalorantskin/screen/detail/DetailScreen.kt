@@ -1,7 +1,5 @@
 package com.andricohalim.jetvalorantskin.screen.detail
 
-import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -21,7 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -29,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -69,6 +66,7 @@ fun DetailScreen(
                     data.skin.name,
                     data.skin.requiredVP,
                     data.skin.description,
+                    data.skin.weapon,
                     data.count,
                     onBackClick = navigateBack,
                     onAddToCart = { count ->
@@ -88,14 +86,15 @@ fun DetailContent(
     title: String,
     baseVP: Int,
     desciption: String,
+    weapon: String,
     count: Int,
     onBackClick: () -> Unit,
     onAddToCart: (count: Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
 
-    var totalPoint by rememberSaveable { mutableStateOf(0) }
-    var orderCount by rememberSaveable { mutableStateOf(count) }
+    var totalPoint by rememberSaveable { mutableIntStateOf(0) }
+    var orderCount by rememberSaveable { mutableIntStateOf(count) }
 
     Column(modifier = modifier) {
         Column(
@@ -106,7 +105,7 @@ fun DetailContent(
             Box {
                 AsyncImage(
                     model = photoUrl,
-                    contentDescription = null,
+                    contentDescription = stringResource(R.string.skin_picture),
                     contentScale = ContentScale.Crop,
                     modifier = modifier
                         .height(400.dp)
@@ -137,12 +136,18 @@ fun DetailContent(
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.ExtraBold
                     ),
-                    color = MaterialTheme.colorScheme.secondary
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
                     text = desciption,
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Justify,
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                Text(
+                    text = stringResource(R.string.weapon_in_bundle, weapon),
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Start,
                 )
             }
         }
@@ -182,6 +187,7 @@ fun DetailContentPreview() {
             "FakeSkinDataSource",
             "Prime Vandal",
             7100,
+            "",
             "",
             1,
             onBackClick = {},

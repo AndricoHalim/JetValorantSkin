@@ -1,5 +1,7 @@
 package com.andricohalim.jetvalorantskin.screen.home
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andricohalim.jetvalorantskin.data.ValorantSkinRepository
@@ -17,6 +19,8 @@ class HomeViewModel(
     val uiState: StateFlow<UiState<List<OrderSkin>>>
         get() = _uiState
 
+
+
     fun getAllSkin() {
         viewModelScope.launch {
             repository.getAllSkin()
@@ -25,6 +29,22 @@ class HomeViewModel(
                 }
                 .collect { orderSkins ->
                     _uiState.value = UiState.Success(orderSkins)
+                }
+        }
+    }
+
+
+    private val _query = mutableStateOf("")
+    val query: State<String> get() = _query
+    fun search(newQuery: String) {
+        viewModelScope.launch {
+            _query.value = newQuery
+            repository.search(newQuery)
+                .catch{ throwable ->
+                    _uiState.value = UiState.Error(throwable.message.toString())
+                }
+                .collect { skin ->
+                    _uiState.value = UiState.Success(skin.map { OrderSkin(it, 0) })
                 }
         }
     }

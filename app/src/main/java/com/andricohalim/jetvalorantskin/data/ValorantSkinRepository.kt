@@ -2,7 +2,9 @@ package com.andricohalim.jetvalorantskin.data
 
 import com.andricohalim.jetvalorantskin.model.FakeSkinDataSource
 import com.andricohalim.jetvalorantskin.model.OrderSkin
+import com.andricohalim.jetvalorantskin.model.Skin
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 
@@ -20,6 +22,14 @@ class ValorantSkinRepository {
 
     fun getAllSkin(): Flow<List<OrderSkin>> {
         return flowOf(orderSkin)
+    }
+
+    fun search(query: String): Flow<List<Skin>> {
+        return flow {
+            val filteredList = orderSkin.filter { it.skin.name.contains(query, ignoreCase = true) }
+                .map { it.skin }
+            emit(filteredList)
+        }
     }
 
     fun getOrderSkinById(rewardId: Long): OrderSkin {
