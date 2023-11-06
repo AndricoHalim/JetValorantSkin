@@ -16,4 +16,7 @@
     <string name="empty_cart">Cart Empty</string>
     <string name="weapon_in_bundle">Weapon In Bundle: %1$s</string>
     <string name="skin_picture">Skin Picture</string>
+    <string name="name">Andrico Halim</string>
+    <string name="email">andrico.21421007@student.ubl.ac.id</string>
+    <string name="my_photo">My Photo</string>
 </resources>

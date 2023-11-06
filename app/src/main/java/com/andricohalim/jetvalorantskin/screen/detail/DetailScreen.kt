@@ -1,5 +1,6 @@
 package com.andricohalim.jetvalorantskin.screen.detail
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -46,13 +47,13 @@ import com.andricohalim.jetvalorantskin.ui.theme.JetValorantSkinTheme
 @Composable
 fun DetailScreen(
     skinId: Long,
+    navigateBack: () -> Unit,
+    navigateToCart: () -> Unit,
     viewModel: DetailSkinViewModel = viewModel(
         factory = ViewModelFactory(
             Injection.provideRepository()
         )
     ),
-    navigateBack: () -> Unit,
-    navigateToCart: () -> Unit
 ) {
     viewModel.uiState.collectAsState(initial = UiState.Loading).value.let { uiState ->
         when (uiState) {
@@ -75,7 +76,9 @@ fun DetailScreen(
                     }
                 )
             }
-            is UiState.Error -> {}
+            is UiState.Error -> {
+                Log.d("Error", "Error UiState")
+            }
         }
     }
 }

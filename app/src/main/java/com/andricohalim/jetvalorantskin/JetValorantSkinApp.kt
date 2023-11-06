@@ -32,6 +32,8 @@ import com.andricohalim.jetvalorantskin.screen.navigation.NavigationItem
 import com.andricohalim.jetvalorantskin.screen.navigation.Screen
 import com.andricohalim.jetvalorantskin.screen.profile.ProfileScreen
 
+private const val ARG_SKIN_ID = "skinId"
+
 @Composable
 fun JetValorantSkinApp(
     modifier: Modifier = Modifier,
@@ -72,9 +74,9 @@ fun JetValorantSkinApp(
             }
             composable(
                 route = Screen.DetailSkin.route,
-                arguments = listOf(navArgument("skinId") { type = NavType.LongType }),
+                arguments = listOf(navArgument(ARG_SKIN_ID) { type = NavType.LongType })
             ) {
-                val id = it.arguments?.getLong("skinId") ?: -1L
+                val id = it.arguments?.getLong(ARG_SKIN_ID) ?: -1L
                 DetailScreen(
                     skinId = id,
                     navigateBack = {

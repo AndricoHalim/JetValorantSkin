@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.andricohalim.jetvalorantskin.R
 
@@ -22,8 +23,8 @@ import com.andricohalim.jetvalorantskin.R
 fun ProfileScreen(
     modifier: Modifier = Modifier
 ) {
-    val name = "Andrico Halim"
-    val email = "andrico.21421007@student.ubl.ac.id"
+    val name = stringResource(R.string.name)
+    val email = stringResource(R.string.email)
 
     Box(
         modifier = modifier.fillMaxSize(),
@@ -34,7 +35,7 @@ fun ProfileScreen(
         ) {
             Image(
                 painter = painterResource(R.drawable.about_me),
-                contentDescription = "My Photo",
+                contentDescription = stringResource(R.string.my_photo),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(200.dp)

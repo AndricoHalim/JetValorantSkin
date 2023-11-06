@@ -1,5 +1,6 @@
 package com.andricohalim.jetvalorantskin.screen.home
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -56,7 +57,9 @@ fun HomeScreen(
                     )
                 }
             }
-            is UiState.Error -> {}
+            is UiState.Error -> {
+                Log.d("Error", "Error UiState")
+            }
         }
     }
 }

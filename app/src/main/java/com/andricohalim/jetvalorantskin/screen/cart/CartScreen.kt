@@ -1,5 +1,6 @@
 package com.andricohalim.jetvalorantskin.screen.cart
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -54,7 +55,9 @@ fun CartScreen(
                     onOrderButtonClicked = onOrderButtonClicked
                 )
             }
-            is UiState.Error -> {}
+            is UiState.Error -> {
+                Log.d("Error", "Error UiState")
+            }
         }
     }
 }

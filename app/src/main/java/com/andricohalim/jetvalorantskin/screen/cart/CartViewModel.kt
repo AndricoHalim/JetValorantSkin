@@ -5,15 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.andricohalim.jetvalorantskin.data.ValorantSkinRepository
 import com.andricohalim.jetvalorantskin.ui.common.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class CartViewModel(
     private val repository: ValorantSkinRepository
 ) : ViewModel() {
     private val _uiState: MutableStateFlow<UiState<CartState>> = MutableStateFlow(UiState.Loading)
-    val uiState: StateFlow<UiState<CartState>>
-        get() = _uiState
+    val uiState = _uiState.asStateFlow()
 
     fun getAddedOrderRewards() {
         viewModelScope.launch {
